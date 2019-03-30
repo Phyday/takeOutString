@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,26 +17,35 @@ public class Main {
     //}
 
     public static void main(String[] args) {
-        List<Map<List<String>, List<String>>> list = addAllMap(getAllCoordsMap());
-        System.out.println("{\n" +
-                "\"filename\":\"valb3.jpg\"\n" +
-                "\"regions\":[");
-        for (Map<List<String>, List<String>> item : list) {
-            System.out.println("{");
-            for (Map.Entry<List<String>, List<String>> map : item.entrySet()) {
-                System.out.println("\"shape_attributes\":{");
-                System.out.println("\"all_points_x\":" + map.getKey() + ",");
-                System.out.println("\"all_points_y\":" + map.getValue() + "");
-                System.out.println("}");
+        try {
+            FileOutputStream bos = new FileOutputStream("output.txt");
+            System.setOut(new PrintStream(bos));
+            List<Map<List<String>, List<String>>> list = addAllMap(getAllCoordsMap());
+            System.out.println("{\n" +
+                    "\"filename\":\"" +
+                    "valb3.jpg" +
+                    "\"\n" +
+                    "\"regions\":[");
+            for (Map<List<String>, List<String>> item : list) {
+                System.out.println("{");
+                for (Map.Entry<List<String>, List<String>> map : item.entrySet()) {
+                    System.out.println("\"shape_attributes\":{");
+                    System.out.println("\"all_points_x\":" + map.getKey() + ",");
+                    System.out.println("\"all_points_y\":" + map.getValue() + "");
+                    System.out.println("}");
+                }
+                System.out.println("},");
             }
-            System.out.println("},");
-        }
-        System.out.println("],\n" +
-                "}");
+            System.out.println("],\n" +
+                    "}");
 //        int a = 5;
 //        int b = 4;
 //        int c = a++ - --b * ++a / b-- >> 2 % a;
 //        System.out.println(c);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static List<List<Map<List<String>, List<String>>>> getAllCoordsMap() {
