@@ -21,13 +21,25 @@ public class Main {
 
     public static void main(String[] args) {
         List<Map<List<String>, List<String>>> list = addAllMap(getAllCoordsMap());
+        System.out.println("{\n" +
+                "\"filename\":\"valb3.jpg\"\n" +
+                "\"regions\":[");
         for (Map<List<String>, List<String>> item : list) {
+            System.out.println("{");
             for (Map.Entry<List<String>, List<String>> map : item.entrySet()) {
-                System.out.println("X :" + map.getKey());
-                System.out.println("Y :" + map.getValue());
+                System.out.println("\"shape_attributes\":{");
+                System.out.println("\"all_points_x\":" + map.getKey() + ",");
+                System.out.println("\"all_points_y\":" + map.getValue() + "");
+                System.out.println("}");
             }
-            System.out.println("------------------------------------------");
+            System.out.println("},");
         }
+        System.out.println("],\n" +
+                "}");
+//        int a = 5;
+//        int b = 4;
+//        int c = a++ - --b * ++a / b-- >> 2 % a;
+//        System.out.println(c);
     }
 
     public static List<List<Map<List<String>, List<String>>>> getAllCoordsMap() {
@@ -36,7 +48,7 @@ public class Main {
         FileReader read = null;
         BufferedReader fileReader = null;
         try {
-            read = new FileReader(new File(Main.class.getClassLoader().getResource("1.txt").getPath()));
+            read = new FileReader(new File(Main.class.getClassLoader().getResource("valb3.txt").getPath()));
             fileReader = new BufferedReader(read);
 
             String line;
