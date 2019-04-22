@@ -18,13 +18,13 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            FileOutputStream bos = new FileOutputStream("output.txt");
+            FileOutputStream bos = new FileOutputStream("testc1.txt");
             System.setOut(new PrintStream(bos));
             List<Map<List<String>, List<String>>> list = addAllMap(getAllCoordsMap());
             System.out.println("{\n" +
                     "\"filename\":\"" +
-                    "valb3.jpg" +
-                    "\"\n" +
+                    "testc1.jpg" +
+                    "\",\n" +
                     "\"regions\":[");
             for (Map<List<String>, List<String>> item : list) {
                 System.out.println("{");
@@ -38,10 +38,6 @@ public class Main {
             }
             System.out.println("],\n" +
                     "}");
-//        int a = 5;
-//        int b = 4;
-//        int c = a++ - --b * ++a / b-- >> 2 % a;
-//        System.out.println(c);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,7 +50,7 @@ public class Main {
         FileReader read = null;
         BufferedReader fileReader = null;
         try {
-            read = new FileReader(new File(Main.class.getClassLoader().getResource("valb3.txt").getPath()));
+            read = new FileReader(new File(Main.class.getClassLoader().getResource("testc1.txt").getPath()));
             fileReader = new BufferedReader(read);
 
             String line;
